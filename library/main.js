@@ -2,7 +2,10 @@
 const books = document.querySelector('.books');
 
 //an array of book objects
-const myLibrary = [
+let myLibrary = [];
+
+function addLocalStorage () {
+    localStorage.setItem('library', JSON.stringify([
     {
         title: "Book1",
         author: "Me",
@@ -14,8 +17,12 @@ const myLibrary = [
         author: "Me",
         pages: 100,
         read: false,
-    }
-];
+    },
+    ])
+    );
+    // myLibrary = JSON.parse(localStorage.getItem('library')) || [];
+    renderBooks(); 
+}
 
 //Helper function to create html elements with text content and classes
 function createBookElement (el, content, className) {
@@ -44,10 +51,10 @@ function createReadElement(bookItem, book) {
             renderBooks();
         }   
     });
-    // if(book.read){
-    //     input.checked = true
-    //     bookItem.setAttribute('class', 'card book read-checked')
-    // }
+    if(book.read){
+        input.checked = true
+        bookItem.setAttribute('class', 'card book read-checked')
+    }
     return read;
 }
 
@@ -75,6 +82,11 @@ function createIcon() {
     return div;
 }
 
+function deleteBook(index) {
+    myLibrary.splice(index, 1);
+    renderBooks();
+}
+
 //Function to create a dom card for each book containing a book's details
 function createBookItem (book, index) {
     const bookItem = document.createElement('div');
@@ -88,13 +100,18 @@ function createBookItem (book, index) {
     bookItem.appendChild(createBookElement('button', 'X', 'delete'));
     bookItem.appendChild(createIcon());
     bookItem.appendChild(createEditIcon(book));
+
+    bookItem.querySelector('.delete').addEventListener('click', () => 
+        deleteBook(index));
+
     books.insertAdjacentElement('afterbegin', bookItem);
 }
 
 //Function to render all the books to the dom
 function renderBooks () {
+    books.textContent = "";
     myLibrary.map((book, index) => createBookItem(book, index));
 }
 
 //Render on page load
-renderBooks();
+addLocalStorage()
