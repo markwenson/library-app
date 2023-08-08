@@ -1,0 +1,420 @@
+:root {
+    font-size: 16px;
+    font-family: 'Roboto Mono', monospace, sans-serif;
+    --text-primary: black;
+    --text-secondary: white;
+    --bg-primary: #64748b;
+    --bg-secondary: #9ca3af;
+    --transition-speed: 1s;
+    --sidebar-color: #ca8a04;
+    --drawer-width: clamp(210px, 15vw, 350px);
+    --nav-bg-1: #ffedd5;
+    --nav-color-1: #dbdbce;
+    --nav-color-2: #c2dfd0;
+    --nav-color-3: #7dabb1;
+    --blue-1: rgb(48, 171, 193);
+    --github-avatar: url("https://github.com/markwenson.png");
+    --github-avatar2: url("https://github.com/mary.png");
+    --github-avatar3: url("https://github.com/mike.png");
+    --github-avatar4: url("https://github.com/bob.png");
+    --content-gray: silver;
+    --transition-notDrawer: margin-left 0.4s ease-in;
+    --transition-drawer: width 0.4s ease-in;
+}
+
+/* * {
+    box-sizing: border-box;
+} */
+
+img {
+    height: 30px;
+    width: auto;
+}
+
+
+body {
+    display: grid;
+    grid-template: 0.2fr 1fr / 5rem repeat(3, 1fr);
+    grid-template-areas: 
+    "sidebar header header header"
+    "sidebar content content content";
+    height: 100vh;
+    width: 100vw;
+}
+
+.sidebar {
+    background-color: var(--blue-1);
+    grid-area: sidebar;
+    display: flex;
+    flex-direction: column;
+    width: 5rem;
+    height: 100vh;
+    position: fixed;
+    transition: var(--transition-drawer);
+    overflow: hidden;
+}
+
+.sidebar:hover {
+    width: var(--drawer-width);
+}
+
+.menuItem > h1 {
+    display: none;
+    margin-left: 10px;
+}
+
+.menuItem:hover {
+    transform: scale(1.2) translateX(1.2rem);
+}
+
+.sidebar:hover > .menuItem > h1 {
+    display: inline;
+}
+
+.sidebar:hover ~ .header, 
+.sidebar:hover ~ .content {
+    margin-left: calc(var(--drawer-width) - 5rem);
+}
+
+
+.menuItem {
+    color: var(--text-secondary);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.menuItem > * {
+    cursor: pointer;
+}
+
+.sidebar > div:not(:first-child) > * {
+    padding: 1vw 0.1vw 0.1vw 1vw;
+    font-size: calc(20px+0.2vw);
+    padding-left: 20px;
+}
+
+.sidebar > div:not(:first-child) > img {
+    width: calc(20px + 0.4vw);
+    height: calc(20px + 0.4vw);
+}
+
+.sidebar > a:not(:first-child) > * {
+    padding: 1vw 0.1vw 0.1vw 1vw;
+    font-size: calc(20px+0.2vw);
+    padding-left: 20px;
+}
+
+.sidebar > a:not(:first-child) > img {
+    width: calc(20px + 0.4vw);
+    height: calc(20px + 0.4vw);
+}
+
+
+.sidebar > div:nth-child(8) {
+    padding-top: calc(40px + 0.2vw);
+}
+
+.dashboard {
+    font-size: clamp(10px, calc(10px + 1vw), 50px);
+}
+
+.dashboard {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.dashboard h1 {
+    padding-top: 15px;
+}
+
+.dashboard img {
+    width: calc(35px + 1vw);
+    height: calc(35px + 1vw);
+    padding-left: 10px;
+    padding-top: 15px;
+}
+
+/* Header Styling */
+.header {
+    background-color: var(--nav-bg-1);
+    padding: 2rem 3rem;
+    grid-area: header;
+    transition: var(--transition-notDrawer);
+    border-bottom: 2px solid #6d445b;
+    position: sticky;
+    top: 0;
+}
+
+.top-section {
+    display: grid;
+    grid-template-columns: 1fr max-content;
+    margin-bottom: 3rem;
+}
+
+.search {
+    display: flex;
+    align-items: center;
+    margin-right: auto;
+    width: 100%;
+}
+
+.search input {
+    display: inline-block;
+    border: 0;
+    background-color: var(--nav-color-1);
+    padding: 0.8rem 1.2rem;
+    outline-color: var(--nav-color-3);
+    margin-left: 1vw;
+    border-radius: 10px;
+    width: min(30vw, 600px);
+    margin-right: 20px;
+}
+
+.header .account {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    font-size: 1.3rem;
+    font-weight: 900;
+    padding-left: 20px;
+}
+
+.github-avatar {
+    background: var(--github-avatar) center center / cover no-repeat;
+    border-radius: 50%;
+}
+
+.account .github-avatar {
+    margin: 0 1rem 0 2.5rem;
+    height: 40px;
+    width: 40px;
+}
+
+.bottom-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.profile {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.profile .github-avatar {
+    width: 75px;
+    height: 75px;
+}
+
+.greeting {
+    font-weight: 900;
+    margin-bottom: 0.4rem;
+}
+
+.profile .name {
+    font-size: 1.3rem;
+    font-weight: 900;
+}
+
+.buttons {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 3rem;
+}
+
+.btn {
+    background-color: var(--sidebar-color);
+    color: var(--text-secondary);
+    font-weight: 800;
+    padding: 0.5rem 1rem;
+    border-radius: 16px;
+    font-size: 1.1rem;
+    border: 1px solid grey;
+    cursor: pointer;
+    transition: 120ms;
+}
+
+.btn:hover {
+    transform: scale(1.1);
+    text-shadow: 1px 1px 3px #64748b;
+    box-shadow: 2px 2px 3px #a2a9b3;
+}
+
+img {
+    cursor: pointer;
+}
+
+/* Main Content */
+.content {
+    background-color: var(--content-gray);
+    display: grid;
+    grid-area: content;
+    transition: var(--transition-notDrawer);
+    padding: 1.8rem;
+    grid-template-columns: 1fr auto;
+    grid-template-rows: min-content 1fr;
+    gap: 2rem;
+    grid-template-areas: 
+    "projects announcements"
+    "projects trending";
+    overflow: auto;
+    height: 100%;
+}
+
+.content h3 {
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+.projects {
+    grid-area: projects;
+}
+
+.projects .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-auto-rows: 250px;
+    gap: 2rem;
+    padding-bottom: 2rem;
+}
+
+.projects .card {
+    background-color: var(--nav-color-2);
+    border-left: 10px solid rgb(158, 199, 83);
+    display: flex;
+    flex-direction: column;
+}
+
+.projects .card-title {
+    font-size: 1.3rem;
+    margin-bottom: 0.2rem;
+    font-weight: 600;
+}
+
+.projects .card-text {
+    display: -webkit-box;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.projects .action-icons {
+    margin-top: auto;
+    align-self: flex-end;
+    display: flex;
+    justify-content: flex-end;
+    gap: 1.2rem;
+    align-items: center;
+    padding: 0 5px 5px 0;
+}
+
+.card {
+    background-color: rgba(45,187,187.459);
+    padding: 2rem;
+    border-radius: 0.6rem;
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / .1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+}
+
+.announcements {
+    grid-area: announcements;   
+}
+
+.announcement {
+    width: 25ch;
+    padding: 1rem 0;
+}
+
+.announcement:first-child {
+    padding-top: 0;
+}
+
+.announcement:last-child {
+    padding-bottom: 0;
+}
+
+.announcement h5 {
+    font-size: 1.2rem;
+    margin-bottom: 0.4rem;
+}
+
+.announcement p {
+    font-size: 0.8rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.announcement + .announcement {
+    border-top: rgb(101, 95, 95) 1px solid;
+}
+
+.trending {
+    grid-area: trending;
+}
+
+.trending .card {
+    padding: 1.5rem;
+}
+
+.trend {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    cursor: pointer;
+}
+
+.trend + .trend {
+    margin-top: 1.5rem;
+}
+
+.trend .account {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    font-size: 0.9rem;
+}
+
+.trend .username {
+    font-weight: 600;
+    margin-bottom: 0.15rem;
+}
+
+.trend-1 .github-avatar2 {
+    background: var(--github-avatar2) center center / cover no-repeat;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+}
+
+.trend-2 .github-avatar {
+    background: var(--github-avatar) center center / cover no-repeat;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+}
+
+.trend-3 .github-avatar3 {
+    background: var(--github-avatar3) center center / cover no-repeat;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+}
+
+.trend-4 .github-avatar4 {
+    background: var(--github-avatar4) center center / cover no-repeat;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+}
+
+.announcements, .trending {
+    margin-right: 1.5rem;
+}

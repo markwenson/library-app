@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../reset.css">
+    <link rel="stylesheet" href="library-styles.css">
+    <!-- type face -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="/assets/home.svg">
+    <title>Admin</title>
+</head>
+<body>
+    <!-- App drawer -->
+    <sector class="sidebar"> 
+        <div class="dashboard menuItem">
+            <img src="/assets/view-dashboard.svg" alt="view-dashboard">
+            <h1>Dashboard</h1>
+        </div>
+        <a href="/" class="menuItem">
+            <img src="/assets/home.svg" alt="home">
+            <h1>Home</h1>
+        </a>
+        <a href="library.html" class="menuItem">
+            <img src="/assets/book.svg" alt="book">
+            <h1>Library</h1>
+        </a>
+        <div class="menuItem">
+            <img src="/assets/message.svg" alt="message">
+            <h1>Messages</h1>
+        </div>
+        <div class="menuItem">
+            <img src="/assets/clock.svg" alt="clock">
+            <h1>History</h1>
+        </div>
+        <div class="menuItem">
+            <img src="/assets/note-multiple.svg" alt="note-multiple">
+            <h1>Tasks</h1>
+        </div>
+        <div class="menuItem">
+            <img src="/assets/account-group.svg" alt="account-group">
+            <h1>Communities</h1>
+        </div>
+
+        <!-- Needs spacing -->
+        <div class="menuItem">
+            <img src="/assets/cog-outline.svg" alt="cog-outline">
+            <h1>Settings</h1>
+        </div>
+        <div class="menuItem">
+            <img src="/assets/face-agent.svg" alt="face-agent">
+            <h1>Support</h1>
+        </div>
+        <div class="menuItem">
+            <img src="/assets/shield-check.svg" alt="shield-check">
+            <h1>Privacy</h1>
+        </div>
+            
+    </sector>
+
+    <!-- Nav bar header -->
+    <sector class="header">
+        <div class="top-section">
+            <!-- Search icon and search bar -->
+            <div class="search">
+                <div class="menuItem">
+                    <img src="/assets/magnify.svg" alt="magnify">
+                </div>
+                <input type="text" name="search" autocomplete="off">
+            </div>
+            <div class="account">
+                <div class="menuIcon">
+                    <img src="/assets/bell-ring.svg" alt="bell-ring">
+                </div>
+                <!-- avatar github -->
+                <div class="github-avatar">
+                        
+                </div>
+                <p class="name">Mark Wenson</p>
+            </div>
+        </div>
+        <div class="bottom-section">
+            <!-- Profile details -->
+            <div class="profile">
+                <div class="github-avatar">
+                    
+                </div>
+                <div class="profile-name">
+                    <p class="greeting">Hi there!</p>
+                    <p class="name">Mark Wenson <span class="username">(@markwenson)</span></p>
+                </div>
+            </div>
+            <!-- Bottom section buttons -->
+            <div class="buttons">
+                <button class="btn">New</button>
+                <button class="btn">Upload</button>
+                <button class="btn">Share</button>
+            </div>
+        </div>
+    </sector>
+
+    <!-- Content -->
+    <main class="content">
+        <div class="projects">
+            <h3>Your Books</h3>
+            <div class="books cards">
+                <!-- Section for Your Projects cards -->
+            </div>
+        </div>
+    </main>
+    <div class="modal" id="modal">
+        <div class="modal-content">
+          <span class="close">&times</span>
+          <div class="modal-form">
+            <h1 class="form-title">Add Book</h1>
+            <form class="add-book-form">
+              <div class="modal-input-field">
+                <label for="book-title">Title:</label>
+                <input
+                  type="text"
+                  name="book-title"
+                  id="book-title"
+                  class="modal-form-input"
+                />
+              </div>
+              <div class="modal-input-field">
+                <label for="book-author">Author:</label>
+                <input
+                  type="text"
+                  name="book-author"
+                  id="book-author"
+                  class="modal-form-input"
+                />
+              </div>
+              <div class="modal-input-field">
+                <label for="book-pages">Pages:</label>
+                <input
+                  type="number"
+                  min="0"
+                  name="book-pages"
+                  id="book-pages"
+                  class="modal-form-input"
+                />
+              </div>
+              <div class="modal-input-field">
+                <span class="modal-read">Read?</span>
+                <label class="container">        
+                  <input
+                    type="checkbox"
+                    name="book-read"
+                    id="book-read"
+                    class="checkmark"
+                  />
+                </label>
+              </div>
+              <div class="submit-modal-form">
+                <button type="submit" class="btn form-add-button"></button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+</body>
+<script src="main.js"></script>
+</html>
